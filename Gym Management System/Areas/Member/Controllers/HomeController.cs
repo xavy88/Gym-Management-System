@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace Gym_Management_System.Controllers
 {
+    [Area("Member")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
