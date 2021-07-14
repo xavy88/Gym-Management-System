@@ -42,12 +42,12 @@ namespace GMS.DataAccess.Data.Repository
                 {
                     query = query.Include(includeProperty);
                 }
-                if (orderby !=null)
-                {
-                    return orderby(query).ToList();
-                }
-                return query.ToList();
             }
+            if (orderby !=null)
+            {
+             return orderby(query).ToList();
+            }
+            return query.ToList();
         }
 
         public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)

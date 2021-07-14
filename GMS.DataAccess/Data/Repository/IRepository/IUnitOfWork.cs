@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace GMS.DataAccess.Data.Repository.IRepository
 {
-    public interface IUnitOfWork
+    public interface IUnitOfWork: IDisposable
     {
-
+        IShiftRepository Shift { get; }
+        void Save();
     }
 }
