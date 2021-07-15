@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GMS.DataAccess.Data.Repository.IRepository
 {
-    public interface IShiftRepository
+    public interface IShiftRepository:IRepository<Shift>
     {
         IEnumerable<SelectListItem> GetShiftListForDropDown();
         void Update(Shift shift);
