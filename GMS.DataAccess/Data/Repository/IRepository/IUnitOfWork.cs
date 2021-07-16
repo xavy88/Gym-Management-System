@@ -9,6 +9,7 @@ namespace GMS.DataAccess.Data.Repository.IRepository
     public interface IUnitOfWork: IDisposable
     {
         IShiftRepository Shift { get; }
+        IMembershipRepository Membership { get; }
         void Save();
     }
 }
