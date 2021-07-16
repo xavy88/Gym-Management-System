@@ -13,19 +13,19 @@ function loadDataTable() {
             "datatype": "json"
         },
         "columns": [
-            { "data": "name", "width": "40%" },
+            { "data": "name", "width": "30%" },
             { "data": "startTime", "width": "20%" },
             { "data": "endTime", "width": "20%" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <a href="/Admin/shift/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:100px;'>
-                                    <i class='far fa-edit'></i> Edit
+                                <a href="/Admin/shift/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
+                                    <i class='far fa-edit'></i>
                                 </a>
                                 &nbsp;
-                                <a onclick=Delete("/Admin/shift/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:100px;'>
-                                    <i class='far fa-trash-alt'></i> Delete
+                                <a onclick=Delete("/Admin/shift/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:50px;'>
+                                    <i class='far fa-trash-alt'></i>
                                 </a>
                             </div>
                             `;
