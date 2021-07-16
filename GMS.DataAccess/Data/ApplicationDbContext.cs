@@ -14,5 +14,6 @@ namespace Gym_Management_System.Data
         {
         }
         public DbSet<Shift> Shift { get; set; }
+        public DbSet<Membership> Memberships { get; set; }
     }
 }
