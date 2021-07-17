@@ -11,6 +11,6 @@ namespace GMS.DataAccess.Data.Repository.IRepository
     public interface IMembershipRepository : IRepository<Membership>
     {
         IEnumerable<SelectListItem> GetMembershiptListForDropDown();
-        void Update(Shift shift);
+        void Update(Membership membership);
     }
 }

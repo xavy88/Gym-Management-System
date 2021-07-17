@@ -17,14 +17,6 @@ namespace GMS.DataAccess.Data.Repository
         {
             _db = db;
         }
-        public IEnumerable<SelectListItem> GetMembershipListForDropDown()
-        {
-            return _db.Memberships.Select(i => new SelectListItem()
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            });
-        }
 
         public void Update(Membership membership)
         {
@@ -42,6 +34,15 @@ namespace GMS.DataAccess.Data.Repository
             objFromDb.Status = false;
             _db.SaveChanges();
 
+        }
+
+        public IEnumerable<SelectListItem> GetMembershiptListForDropDown()
+        {
+            return _db.Memberships.Select(i => new SelectListItem()
+            {
+                Text = i.Name,
+                Value = i.Id.ToString()
+            });
         }
     }
 }
