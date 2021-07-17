@@ -16,10 +16,11 @@ namespace GMS.DataAccess.Data.Repository
             _db = db;
             Shift = new ShiftRepository(_db);
             Membership = new MembershipRepository(_db);
+            Equipment = new EquipmentRepository(_db);
         }
         public IShiftRepository Shift { get; private set; }
         public IMembershipRepository Membership { get; private set; }
-
+        public IEquipmentRepository Equipment { get; private set; }
         public void Dispose()
         {
             _db.Dispose();

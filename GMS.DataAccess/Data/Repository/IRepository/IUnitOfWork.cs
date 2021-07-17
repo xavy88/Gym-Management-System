@@ -10,6 +10,7 @@ namespace GMS.DataAccess.Data.Repository.IRepository
     {
         IShiftRepository Shift { get; }
         IMembershipRepository Membership { get; }
+        IEquipmentRepository Equipment { get; }
         void Save();
     }
 }
