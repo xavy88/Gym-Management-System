@@ -25,4 +25,8 @@
     <ProjectReference Include="..\GMS.DataAccess\GMS.DataAccess.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\equipment\" />
+  </ItemGroup>
+
 </Project>
