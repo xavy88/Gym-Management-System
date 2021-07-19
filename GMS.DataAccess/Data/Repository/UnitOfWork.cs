@@ -18,11 +18,13 @@ namespace GMS.DataAccess.Data.Repository
             Membership = new MembershipRepository(_db);
             Equipment = new EquipmentRepository(_db);
             Member = new MemberRepository(_db);
+            Trainer = new TrainerRepository(_db);
         }
         public IShiftRepository Shift { get; private set; }
         public IMembershipRepository Membership { get; private set; }
         public IEquipmentRepository Equipment { get; private set; }
         public IMemberRepository Member { get; private set; }
+        public ITrainerRepository Trainer { get; private set; }
         public void Dispose()
         {
             _db.Dispose();

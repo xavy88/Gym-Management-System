@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GMS.Models
 {
-    public class Member
+    public class Trainer
     {
         public int Id { get; set; }
         [Required]
@@ -15,10 +15,9 @@ namespace GMS.Models
         public string Phone { get; set; }
         public string Email { get; set; }
         [Display(Name = "Gender M/F")]
-        [StringLength(1, ErrorMessage = "You have to write M or F")]
+        [StringLength(1,ErrorMessage ="You have to write M or F")]
         public string Gender { get; set; }
-        public double Height { get; set; }
-        public double Weight { get; set; }
+        public double Salary { get; set; }
         [Display(Name = "Date Of Birth")]
         [DataType(DataType.Date)]
         public DateTime DateOfBirth { get; set; }
