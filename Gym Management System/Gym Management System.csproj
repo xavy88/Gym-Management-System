@@ -27,6 +27,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\equipment\" />
+    <Folder Include="wwwroot\images\member\" />
   </ItemGroup>
 
 </Project>

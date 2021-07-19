@@ -1,0 +1,158 @@
+﻿@model GMS.Models.Member
+@{
+    var title = "Create Member";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form method="post" asp-action="Upsert" enctype="multipart/form-data">
+
+    <div class="row px-2 mx-2 backgroundWhite border">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        @if (Model.Id != 0)
+        {
+            <input type="hidden" asp-for="Id" />
+            title = "Edit Member";
+        }
+
+        <div class="col-12">
+            <h2 class="text-primary">@title</h2>
+            <br />
+        </div>
+        <div class="col-9">
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Phone"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Email"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Gender"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Gender" class="form-control" style='text-transform:uppercase'  />
+                    <span asp-validation-for="Gender" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Height"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Height" id="txtPrice" class="form-control" />
+                    <span asp-validation-for="Height" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Weight"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Weight" id="txtPrice" class="form-control" />
+                    <span asp-validation-for="Weight" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="DateOfBirth"></label>
+                </div>
+                <div class="col-8">
+                    <input type="date" asp-for="DateOfBirth" class="form-control" />
+                    <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="Address"></label>
+                </div>
+                <div class="col-8">
+                    <textarea asp-for="Address" class="form-control" style="height:300px;"></textarea>
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-4">
+                    <label asp-for="ImageUrl"></label>
+                </div>
+                <div class="col-8">
+                    <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <div class="col-8 offset-4">
+                    @if (Model.Id != 0)
+                    {
+                        //Edit button and back to list
+                        <partial name="_EditAndBackToListButton" model="Model.Id" />
+                    }
+                    else
+                    {
+                        <div class="row">
+                            <div class="col">
+                                <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control"><i class="fas fa-save"></i> Create</button>
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-success form-control"><i class="fas fa-undo-alt"></i> Back to List</a>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+        @if (Model.Id != 0)
+        {
+            <div class="col-3">
+                <img src="@Model.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+            </div>
+        }
+    </div>
+
+</form>
+
+@section Scripts{
+    <script src="https://cdn.tiny.cloud/1/n94ifuzvl80pchikopiwgz2esrw8n28dwcywvpejlqrregfp/tinymce/5/tinymce.min.js"></script>
+    <script>
+
+    tinymce.init({
+        selector: 'textarea',
+        plugins: 'lists',
+        menubar: 'file edit format'
+    });
+
+    function validateInput() {
+        if (document.getElementById("uploadBox").value == "") {
+            swal("Error", "Please Select an Image", "error")
+            return false;
+        }
+        return true;
+            };
+
+    $(document).ready(function () {
+        if (document.getElementById('txtPrice').value == "0") {
+            document.getElementById('txtPrice').value = '';
+        }
+    });
+    </script>
+}
