@@ -113,13 +113,13 @@ namespace Gym_Management_System.Areas.Identity.Pages.Account
                     }
                     else if (role == SD.Trainer)
                     {
-                        await _userManager.AddToRoleAsync(user, SD.Admin);
+                        await _userManager.AddToRoleAsync(user, SD.Trainer);
                     }
                     else
                     {
                         if (role == SD.Member)
                         {
-                            await _userManager.AddToRoleAsync(user, SD.Admin);
+                            await _userManager.AddToRoleAsync(user, SD.Member);
                         }
                     }
                     _logger.LogInformation("User created a new account with password.");

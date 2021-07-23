@@ -1,4 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using GMS.Utility
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccesor
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -10,47 +14,95 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
 
 </head>
-<body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/Logo-GSM.png" alt="Gym Management System" height="118px" /></a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Shift" asp-action="Index">Shift</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Membership" asp-action="Index">Memberships</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Equipment" asp-action="Index">Equipments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Member" asp-action="Index">Members</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="Trainer" asp-action="Index">Trainer</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+<body id="body-pd" class="search-background">
+    <header class="header mb-5" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+                <div class="container">
+                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/Logo-GSM.png" alt="Gym Management System" height="118px" /></a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                        <ul class="navbar-nav flex-grow-1">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Shift" asp-action="Index">Shift</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Membership" asp-action="Index">Memberships</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Equipment" asp-action="Index">Equipments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Member" asp-action="Index">Members</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Trainer" asp-action="Index">Trainer</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                            </li>
+                        </ul>
+                        <partial name="_LoginPartial" />
+                    </div>
+                </div>
+            </nav>*@
+           <partial name="_LoginPartial" />
+    </header>
+
+    <!--Sidebar menu-->
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav_logo"> <img src="~/favicon.ico" width="30px" height="30px" /><span class="nav_logo-name"></span> </a>
+                <div class="nav_list">
+                    <a href="#" class="nav_link active">
+                        <i class='bx bx-grid-alt nav_icon'></i>
+                        <span class="nav_name ">Dashboard</span>
+                    </a>
+
+                    <a class="nav_link" asp-area="Member" asp-controller="Home" asp-action="Index" title="Home"><img src="~/images/menu-icons/Home.png" width="30px" height="30px" /><span class="nav_name">Home</span> </a>
+                    @*<a class="nav_link" asp-area="Customer" asp-controller="Home" asp-action="List"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">List</span> </a>*@
+                    @*@if (User.IsInRole(SD.Trainer) || User.IsInRole(SD.Admin))
+        {
+            <a class="nav_link" asp-area="Admin" asp-controller="Category" asp-action="Index"> <i class='bx bx-category nav_icon'></i> <span class="nav_name">Categories</span> </a>
+            <a class="nav_link" asp-area="Admin" asp-controller="Service" asp-action="Index"> <i class='bx bxs-car-mechanic nav_icon'></i> <span class="nav_name">Products</span> </a>
+            <a class="nav_link" asp-area="Admin" asp-controller="Order" asp-action="Index"> <i class='bx bxs-credit-card-alt nav_icon'></i> <span class="nav_name">Orders</span> </a>
+        }*@
+
+                    @if (User.IsInRole(SD.Admin))
+                    {
+
+                        /* <a class="nav-link" asp-area="Member" asp-controller="Home" asp-action="Index"><i class='bx bx-home nav_icon'></i> <span class="nav_name">Home</span></a>
+                         <a class="nav-link" asp-area="Admin" asp-controller="Shift" asp-action="Index"><i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Shift</span></a>
+                         <a class="nav-link" asp-area="Admin" asp-controller="Membership" asp-action="Index"><i class='bx bx-category nav_icon'></i> <span class="nav_name">Memberships</span></a>
+                         <a class="nav-link" asp-area="Admin" asp-controller="Equipment" asp-action="Index"><i class='bx bxs-car-mechanic nav_icon'></i> <span class="nav_name">Equipments</span></a>
+                         <a class="nav-link" asp-area="Admin" asp-controller="Member" asp-action="Index"><i class='bx bxs-credit-card-alt nav_icon'></i> <span class="nav_name">Members</span></a>
+                         <a class="nav-link" asp-area="Admin" asp-controller="Trainer" asp-action="Index"><i class='bx bxs-credit-card-alt'></i> <span class="nav_name">Trainer</span></a>*/
+                        <a class="nav_link" asp-area="Admin" asp-controller="Shift" asp-action="Index" title="Shift"> <img src="~/images/menu-icons/Shift.png" width="30px" height="30px" /> <span class="nav_name">Shifts</span> </a>
+                        <a class="nav_link" asp-area="Admin" asp-controller="Membership" asp-action="Index" title="Membership"> <img src="~/images/menu-icons/Membership.png" width="30px" height="30px" /> <span class="nav_name">Memberships</span> </a>
+                        <a class="nav_link" asp-area="Admin" asp-controller="Equipment" asp-action="Index" title="Equipment"> <img src="~/images/menu-icons/Equipment.png" width="30px" height="30px" /> <span class="nav_name">Equipments</span> </a>
+                        <a class="nav_link" asp-area="Admin" asp-controller="Member" asp-action="Index" title="Member"> <img src="~/images/menu-icons/Member.png" width="30px" height="30px" /> <span class="nav_name">Members</span> </a>
+                        <a class="nav_link" asp-area="Admin" asp-controller="Trainer" asp-action="Index" title="Trainer"> <img src="~/images/menu-icons/Trainer.png" width="30px" height="30px" /> <span class="nav_name">Trainer</span> </a>
+                        <a class="nav_link" asp-area="Admin" asp-controller="User" asp-action="Index" title="Users"> <img src="~/images/menu-icons/Users.png" width="30px" height="30px" /> <span class="nav_name">Users</span> </a>
+                    }
+
                 </div>
             </div>
+
         </nav>
-    </header>
-    <div class="container">
+    </div>
+    <!--End Sidebar menu-->
+    <div class="container my-3" style="padding-top: 2em; padding-bottom: 2em;">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -58,7 +110,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - Gym_Management_System - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2021 - Gym Management System
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -70,6 +122,7 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
     <script src="https://kit.fontawesome.com/e19c476714.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
 
 
     @await RenderSectionAsync("Scripts", required: false)
