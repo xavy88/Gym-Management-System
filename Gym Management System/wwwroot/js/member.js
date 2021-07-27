@@ -24,6 +24,10 @@ function loadDataTable() {
                                     <i class='far fa-edit'></i>
                                 </a>
                                 &nbsp;
+                                <a href="/Admin/member/ManageTrainers/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
+                                    <i class='far fa-edit'></i>
+                                </a>
+                                &nbsp;
                                 <a onclick=Delete("/Admin/member/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:50px;'>
                                     <i class='far fa-trash-alt'></i>
                                 </a>
