@@ -37,12 +37,12 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         public IActionResult Upsert(int? id)
         {
             member = new Member();
-            if (id!=null)
+            if (id != null)
             {
                 member = _unitOfWork.Member.Get(id.GetValueOrDefault());
             }
             return View(member);
-          
+
         }
 
         [HttpPost]
@@ -60,7 +60,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
                     var uploads = Path.Combine(webRootPath, @"images\member");
                     var extension = Path.GetExtension(files[0].FileName);
 
-                    using (var fileStreams = new FileStream(Path.Combine(uploads,fileName + extension), FileMode.Create))
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
                         files[0].CopyTo(fileStreams);
                     }
@@ -108,59 +108,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
                 return View(member);
             }
         }
-
-        #region Manage Trainer
-        public IActionResult ManageTrainers(int id)
-        {
-            MemberTrainerVM obj = new MemberTrainerVM
-            {
-                MemberTrainerList = _db.MemberTrainers.Include(u => u.Trainer).Include(u => u.Member).Where(u => u.Member_Id == id).ToList(),
-                MemberTrainer = new MemberTrainer()
-                {
-                    Member_Id = id
-                },
-                Member = _db.Members.FirstOrDefault(u => u.Id == id)
-            };
-            List<int> tempListOfAssignedTrainers = obj.MemberTrainerList.Select(u => u.Trainer_Id).ToList();
-            //Not In Clause in LINQ
-            //get all the trainers who id is not in tempListOfAssignedTrainer
-            var tempList = _db.Trainer.Where(u => !tempListOfAssignedTrainers.Contains(u.Id)).ToList();
-
-            obj.TrainerList = tempList.Select(i => new SelectListItem
-            {
-                Text = i.Name,
-                Value = i.Id.ToString()
-            });
-
-            return View(obj);
-        }
-        [HttpPost]
-        public IActionResult ManageTrainers(MemberTrainerVM memberTrainerVM)
-        {
-            if (memberTrainerVM.MemberTrainer.Member_Id != 0 /*&& memberTrainerVM.MemberTrainer.Member_Id = 0*/)
-            {
-                _db.MemberTrainers.Add(memberTrainerVM.MemberTrainer);
-                _db.SaveChanges();
-            }
-
-            return RedirectToAction(nameof(ManageTrainers), new { @id = memberTrainerVM.MemberTrainer.Member_Id });
-        }
-
-        [HttpPost]
-        public IActionResult RemoveTrainers(int trainerId, MemberTrainerVM memberTrainerVM)
-        {
-            int memberId = memberTrainerVM.Member.Id;
-            MemberTrainer memberTrainer = _db.MemberTrainers.FirstOrDefault(
-                u => u.Member_Id == memberId && u.Trainer_Id == trainerId);
-
-            _db.MemberTrainers.Remove(memberTrainer);
-            _db.SaveChanges();
-
-
-            return RedirectToAction(nameof(ManageTrainers), new { @id = trainerId });
-        }
-        #endregion
-
+               
         #region API Calls
         public IActionResult GetAll()
         {

@@ -20,7 +20,7 @@ namespace GMS.DataAccess.Data.Repository
             Member = new MemberRepository(_db);
             Trainer = new TrainerRepository(_db);
             User = new UserRepository(_db);
-            MemberTrainer = new MemberTrainerRepository(_db);
+            
         }
         public IShiftRepository Shift { get; private set; }
         public IMembershipRepository Membership { get; private set; }
@@ -28,7 +28,7 @@ namespace GMS.DataAccess.Data.Repository
         public IMemberRepository Member { get; private set; }
         public ITrainerRepository Trainer { get; private set; }
         public IUserRepository User { get; private set; }
-        public IMemberTrainerRepository MemberTrainer { get; private set; }
+        
         public void Dispose()
         {
             _db.Dispose();

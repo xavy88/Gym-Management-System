@@ -14,7 +14,6 @@ namespace GMS.DataAccess.Data.Repository.IRepository
         IMemberRepository Member{ get; }
         ITrainerRepository Trainer { get; }
         IUserRepository User { get; }
-        IMemberTrainerRepository MemberTrainer { get; }
         void Save();
     }
 }

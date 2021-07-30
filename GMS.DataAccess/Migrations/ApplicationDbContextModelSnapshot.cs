@@ -435,13 +435,13 @@ namespace GMS.DataAccess.Migrations
             modelBuilder.Entity("GMS.Models.MemberTrainer", b =>
                 {
                     b.HasOne("GMS.Models.Member", "Member")
-                        .WithMany()
+                        .WithMany("MemberTrainers")
                         .HasForeignKey("Member_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("GMS.Models.Trainer", "Trainer")
-                        .WithMany()
+                        .WithMany("MemberTrainers")
                         .HasForeignKey("Trainer_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -500,6 +500,16 @@ namespace GMS.DataAccess.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("GMS.Models.Member", b =>
+                {
+                    b.Navigation("MemberTrainers");
+                });
+
+            modelBuilder.Entity("GMS.Models.Trainer", b =>
+                {
+                    b.Navigation("MemberTrainers");
                 });
 #pragma warning restore 612, 618
         }
