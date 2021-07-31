@@ -1,4 +1,5 @@
-﻿@model GMS.Models.ViewModel.MemberVM
+﻿@model GMS.Models.ViewModel.ClientVM
+
 @{
     var title = "Create Member";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,136 +9,134 @@
 
     <div class="row px-2 mx-2 backgroundWhite border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @if (Model.Member.Id != 0)
+        @if (Model.Client.Id != 0)
         {
-            <input type="hidden" asp-for="Member.Id" />
+            <input type="hidden" asp-for="Client.Id" />
             title = "Edit Member";
         }
 
         <div class="col-12">
-            <h2 class="text-primary">@title</h2>
+            <h2 class="" style="color: #191970;"><i class="fas fa-motorcycle"></i> @title</h2>
             <br />
         </div>
         <div class="col-9">
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Member.Name"></label>
+                    <label>Name</label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Member.Name" class="form-control" />
-                    <span asp-validation-for="Member.Name" class="text-danger"></span>
+                    <input asp-for="Client.Name" class="form-control" autofocus />
+                    <span asp-validation-for="Client.Name" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Member.Phone"></label>
+                    <label asp-for="Client.Phone"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Member.Phone" class="form-control" />
-                    <span asp-validation-for="Member.Phone" class="text-danger"></span>
+                    <input asp-for="Client.Phone" class="form-control" />
+                    <span asp-validation-for="Client.Phone" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Member.Email"></label>
+                    <label asp-for="Client.Email"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Member.Email" class="form-control" />
-                    <span asp-validation-for="Member.Email" class="text-danger"></span>
+                    <input asp-for="Client.Email" id="txtPrice" class="form-control" />
+                    <span asp-validation-for="Client.Email" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Member.Gender"></label>
+                    <label asp-for="Client.Gender"></label>
                 </div>
                 <div class="col-8">
-                    <select asp-for="Member.Gender" class="form-control" style='text-transform:uppercase'>
+                    <select asp-for="Client.Gender" class="form-control" style='text-transform:uppercase'>
                         <option value="M">M</option>
                         <option value="F">F</option>
                     </select>
-                    <span asp-validation-for="Member.Gender" class="text-danger"></span>
+                    <span asp-validation-for="Client.Gender" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Member.Height"></label>
+                    <label asp-for="Client.Height"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Member.Height" id="txtPrice" class="form-control" />
-                    <span asp-validation-for="Member.Height" class="text-danger"></span>
+                    <input asp-for="Client.Height" id="txtPrice" class="form-control" />
+                    <span asp-validation-for="Client.Height" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Member.Weight"></label>
+                    <label asp-for="Client.Weight"></label>
                 </div>
                 <div class="col-8">
-                    <input asp-for="Member.Weight" id="txtPrice" class="form-control" />
-                    <span asp-validation-for="Member.Weight" class="text-danger"></span>
+                    <input asp-for="Client.Weight" class="form-control" />
+                    <span asp-validation-for="Client.Weight" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Member.DateOfBirth"></label>
+                    <label asp-for="Client.DateOfBirth"></label>
                 </div>
                 <div class="col-8">
-                    <input type="date" asp-for="Member.DateOfBirth" class="form-control" />
-                    <span asp-validation-for="Member.DateOfBirth" class="text-danger"></span>
+                    <input type="date" asp-for="Client.DateOfBirth" class="form-control" />
+                    <span asp-validation-for="Client.DateOfBirth" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Member.Address"></label>
+                    <label asp-for="Client.Address"></label>
                 </div>
                 <div class="col-8">
-                    <textarea asp-for="Member.Address" class="form-control" style="height:300px;"></textarea>
-                    <span asp-validation-for="Member.Address" class="text-danger"></span>
+                    <textarea asp-for="Client.Address" class="form-control" style="height:300px;"></textarea>
+                    <span asp-validation-for="Client.Address" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label>Trainer</label>
+                    <label>Client</label>
                 </div>
                 <div class="col-8">
-                    @Html.DropDownListFor(m => m.Member.TrainerId, Model.TrainerList,
+                    @Html.DropDownListFor(m => m.Client.TrainerId, Model.TrainerList,
                                             "--- Please select a Trainer ---", new { @class = "form-control" })
-                    <span asp-validation-for="Member.Trainer" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Member.ImageUrl"></label>
+                    <label asp-for="Client.ImageUrl"></label>
                 </div>
                 <div class="col-8">
                     <input type="file" name="files" id="uploadBox" multiple class="form-control" />
                 </div>
             </div>
-
             <div class="form-group row">
                 <div class="col-8 offset-4">
-                    @if (Model.Member.Id != 0)
+                    @if (Model.Client.Id != 0)
                     {
                         //Edit button and back to list
-                        <partial name="_EditAndBackToListButton" model="Model.Member.Id" />
+                        <partial name="_EditAndBackToListButton" model="Model.Client.Id" />
                     }
                     else
                     {
-                        <div class="row">
-                            <div class="col">
-                                <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control"><i class="fas fa-save"></i> Create</button>
-                            </div>
-                            <div class="col">
-                                <a asp-action="Index" class="btn btn-success form-control"><i class="fas fa-undo-alt"></i> Back to List</a>
-                            </div>
-                        </div>
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" onclick="return validateInput()" class="btn btn-primary form-control"><i class="fas fa-save"></i> Create</button>
+                    </div>
+                    <div class="col">
+                        <a asp-action="Index" class="btn btn-success form-control"><i class="fas fa-undo-alt"></i> Back to List</a>
+                    </div>
+                </div>
                     }
                 </div>
             </div>
         </div>
-        @if (Model.Member.Id != 0)
+        @if (Model.Client.Id != 0)
         {
             <div class="col-3">
-                <img src="@Model.Member.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+                <img src="@Model.Client.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
             </div>
         }
     </div>
@@ -161,11 +160,5 @@
         }
         return true;
             };
-
-    $(document).ready(function () {
-        if (document.getElementById('txtPrice').value == "0") {
-            document.getElementById('txtPrice').value = '';
-        }
-    });
     </script>
 }

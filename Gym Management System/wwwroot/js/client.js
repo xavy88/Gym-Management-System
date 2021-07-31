@@ -8,24 +8,24 @@ function loadDataTable() {
 
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            "url": "/admin/member/GetAll",
+            "url": "/admin/client/GetAll",
             "type": "GET",
             "datatype": "json"
         },
         "columns": [
             { "data": "name", "width": "30%" },
-            { "data": "phone", "width": "20%" },
+            { "data": "phone", "width": "10%" },
             { "data": "email", "width": "20%" },
-            { "data": "trainer.name", "width": "20%" },
+            { "data": "trainer.name", "width": "15%" },
             {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <a href="/Admin/member/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
+                                <a href="/Admin/client/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
                                     <i class='far fa-edit'></i>
                                 </a>
                                 &nbsp;
-                                <a onclick=Delete("/Admin/member/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:50px;'>
+                                <a onclick=Delete("/Admin/client/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:50px;'>
                                     <i class='far fa-trash-alt'></i>
                                 </a>
                             </div>

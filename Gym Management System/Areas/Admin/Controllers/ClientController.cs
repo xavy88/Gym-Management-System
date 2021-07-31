@@ -1,33 +1,32 @@
 ﻿using GMS.DataAccess.Data.Repository.IRepository;
-using GMS.Models;
 using GMS.Models.ViewModel;
-using Gym_Management_System.Data;
+using GMS.Models;
+using GMS.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = SD.Admin + "," + SD.Manager)]
+    [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
     [Area("Admin")]
-    public class MemberController : Controller
+    public class ClientController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IWebHostEnvironment _hostEnvironment;
-   
+
         [BindProperty]
-        public MemberVM member { get; set; }
-        public MemberController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
+        public ClientVM CliVM { get; set; }
+
+        public ClientController(IUnitOfWork unitOfWork, IWebHostEnvironment hostEnvironment)
         {
-            _hostEnvironment = hostEnvironment;
             _unitOfWork = unitOfWork;
-          
+            _hostEnvironment = hostEnvironment;
         }
         public IActionResult Index()
         {
@@ -36,55 +35,56 @@ namespace Gym_Management_System.Areas.Admin.Controllers
 
         public IActionResult Upsert(int? id)
         {
-            member = new MemberVM()
+            CliVM = new ClientVM()
             {
-                Member = new Member(),
+                Client = new Client(),
                 TrainerList = _unitOfWork.Trainer.GetTrainerListForDropDown(),
             };
+
             if (id != null)
             {
-                member.Member = _unitOfWork.Member.Get(id.GetValueOrDefault());
+                CliVM.Client = _unitOfWork.Client.Get(id.GetValueOrDefault());
             }
-            return View(member);
 
+            return View(CliVM);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+
         public IActionResult Upsert()
         {
             if (ModelState.IsValid)
             {
                 string webRootPath = _hostEnvironment.WebRootPath;
                 var files = HttpContext.Request.Form.Files;
-                if (member.Member.Id == 0)
+                if (CliVM.Client.Id == 0)
                 {
-                    //new Member
+                    //New Client
                     string fileName = Guid.NewGuid().ToString();
-                    var uploads = Path.Combine(webRootPath, @"images\member");
+                    var uploads = Path.Combine(webRootPath, @"images\client");
                     var extension = Path.GetExtension(files[0].FileName);
 
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
                         files[0].CopyTo(fileStreams);
                     }
-                    member.Member.ImageUrl = @"\images\member\" + fileName + extension;
 
-                    _unitOfWork.Member.Add(member.Member);
+                    CliVM.Client.ImageUrl = @"\images\client\" + fileName + extension;
 
+                    _unitOfWork.Client.Add(CliVM.Client);
                 }
                 else
                 {
-                    //Edit Members
-
-                    var memberFromDb = _unitOfWork.Member.Get(member.Member.Id);
+                    //Edit Client
+                    var clientFromDb = _unitOfWork.Client.Get(CliVM.Client.Id);
                     if (files.Count > 0)
                     {
                         string fileName = Guid.NewGuid().ToString();
-                        var uploads = Path.Combine(webRootPath, @"images\member");
+                        var uploads = Path.Combine(webRootPath, @"images\client");
                         var extension_new = Path.GetExtension(files[0].FileName);
 
-                        var imagePath = Path.Combine(webRootPath, memberFromDb.ImageUrl.TrimStart('\\'));
+                        var imagePath = Path.Combine(webRootPath, clientFromDb.ImageUrl.TrimStart('\\'));
                         if (System.IO.File.Exists(imagePath))
                         {
                             System.IO.File.Delete(imagePath);
@@ -94,53 +94,53 @@ namespace Gym_Management_System.Areas.Admin.Controllers
                             files[0].CopyTo(fileStreams);
                         }
 
-                        member.Member.ImageUrl = @"\images\member\" + fileName + extension_new;
+                        CliVM.Client.ImageUrl = @"\images\client\" + fileName + extension_new;
                     }
                     else
                     {
-                        member.Member.ImageUrl = memberFromDb.ImageUrl;
+                        CliVM.Client.ImageUrl = clientFromDb.ImageUrl;
                     }
 
-                    _unitOfWork.Member.Update(member.Member);
+                    _unitOfWork.Client.Update(CliVM.Client);
                 }
-
                 _unitOfWork.Save();
                 return RedirectToAction(nameof(Index));
             }
             else
             {
-                member.TrainerList = _unitOfWork.Trainer.GetTrainerListForDropDown();
-                return View(member);
+                CliVM.TrainerList = _unitOfWork.Trainer.GetTrainerListForDropDown();
+                return View(CliVM);
             }
         }
-               
+
         #region API Calls
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitOfWork.Member.GetAll(includeProperties:"Trainer")});
+            return Json(new { data = _unitOfWork.Client.GetAll(includeProperties: "Trainer") });
         }
 
         [HttpDelete]
         public IActionResult Delete(int id)
         {
-            var memberFromDb = _unitOfWork.Member.Get(id);
+            var clientFromDb = _unitOfWork.Client.Get(id);
             string webRootPath = _hostEnvironment.WebRootPath;
-            var imagePath = Path.Combine(webRootPath, memberFromDb.ImageUrl.TrimStart('\\'));
+            var imagePath = Path.Combine(webRootPath, clientFromDb.ImageUrl.TrimStart('\\'));
             if (System.IO.File.Exists(imagePath))
             {
                 System.IO.File.Delete(imagePath);
             }
 
-            if (memberFromDb == null)
+            if (clientFromDb == null)
             {
                 return Json(new { success = false, message = "Error while deleting." });
             }
 
-            _unitOfWork.Member.Remove(memberFromDb);
+            _unitOfWork.Client.Remove(clientFromDb);
             _unitOfWork.Save();
             return Json(new { success = true, message = "Deleted Successfully." });
         }
 
         #endregion
+
     }
 }

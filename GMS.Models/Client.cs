@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace GMS.Models
 {
-    public class Member
+    public class Client
     {
         public int Id { get; set; }
         [Required]

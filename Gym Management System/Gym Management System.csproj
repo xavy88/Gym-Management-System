@@ -27,7 +27,7 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\equipment\" />
-    <Folder Include="wwwroot\images\member\" />
+    <Folder Include="wwwroot\images\client\" />
     <Folder Include="wwwroot\images\trainer\" />
   </ItemGroup>
 

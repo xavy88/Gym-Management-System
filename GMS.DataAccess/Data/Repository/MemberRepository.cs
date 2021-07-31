@@ -38,6 +38,7 @@ namespace GMS.DataAccess.Data.Repository
             objFromDb.DateOfBirth = member.DateOfBirth;
             objFromDb.Address = member.Address;
             objFromDb.ImageUrl = member.ImageUrl;
+            objFromDb.TrainerId = member.TrainerId;
             objFromDb.Status= member.Status;
 
 
