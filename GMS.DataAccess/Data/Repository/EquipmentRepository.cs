@@ -17,11 +17,11 @@ namespace GMS.DataAccess.Data.Repository
         {
             _db = db;
         }
-        public IEnumerable<SelectListItem> GetEquipmenttListForDropDown()
+        public IEnumerable<SelectListItem> GetEquipmentListForDropDown()
         {
             return _db.Equipment.Select(i => new SelectListItem()
             {
-                Text = i.Name,
+                Text = i.Serial,
                 Value = i.Id.ToString()
             });
         }

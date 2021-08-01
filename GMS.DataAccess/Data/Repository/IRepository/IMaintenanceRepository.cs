@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace GMS.DataAccess.Data.Repository.IRepository
 {
-    public interface IEquipmentRepository : IRepository<Equipment>
+    public interface IMaintenanceRepository : IRepository<Maintenance>
     {
-        IEnumerable<SelectListItem> GetEquipmentListForDropDown();
-        void Update(Equipment equipment);
+     //IEnumerable<SelectListItem> GetMaintenanceListForDropDown();
+        void Update(Maintenance maintenance);
     }
 }

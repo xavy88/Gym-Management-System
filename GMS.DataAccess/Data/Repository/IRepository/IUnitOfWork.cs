@@ -14,6 +14,7 @@ namespace GMS.DataAccess.Data.Repository.IRepository
         IEquipmentRepository Equipment { get; }
         IMemberRepository Member{ get; }
         IClientRepository Client { get; }
+        IMaintenanceRepository Maintenance { get; }
         ITrainerRepository Trainer { get; }
         IUserRepository User { get; }
         void Save();

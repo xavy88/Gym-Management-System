@@ -19,6 +19,7 @@ namespace Gym_Management_System.Data
         public DbSet<Equipment> Equipment { get; set; }
         public DbSet<Member> Members { get; set; }
         public DbSet<Client> Clients { get; set; }
+        public DbSet<Maintenance> Maintenances { get; set; }
         public DbSet<Trainer> Trainer{ get; set; }
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
      

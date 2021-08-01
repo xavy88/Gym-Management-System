@@ -28,6 +28,8 @@
   <ItemGroup>
     <Folder Include="wwwroot\images\equipment\" />
     <Folder Include="wwwroot\images\client\" />
+    <Folder Include="wwwroot\images\invoice\" />
+    <Folder Include="wwwroot\images\maintenance\" />
     <Folder Include="wwwroot\images\trainer\" />
   </ItemGroup>
 
