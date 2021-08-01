@@ -9,6 +9,7 @@ namespace GMS.DataAccess.Data.Repository.IRepository
     public interface IUnitOfWork: IDisposable
     {
         IShiftRepository Shift { get; }
+        IPeriodRepository Period { get; }
         IMembershipRepository Membership { get; }
         IEquipmentRepository Equipment { get; }
         IMemberRepository Member{ get; }

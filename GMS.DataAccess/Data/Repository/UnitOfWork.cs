@@ -15,6 +15,7 @@ namespace GMS.DataAccess.Data.Repository
         {
             _db = db;
             Shift = new ShiftRepository(_db);
+            Period = new PeriodRepository(_db);
             Membership = new MembershipRepository(_db);
             Equipment = new EquipmentRepository(_db);
             Member = new MemberRepository(_db);
@@ -24,6 +25,7 @@ namespace GMS.DataAccess.Data.Repository
             
         }
         public IShiftRepository Shift { get; private set; }
+        public IPeriodRepository Period { get; private set; }
         public IMembershipRepository Membership { get; private set; }
         public IEquipmentRepository Equipment { get; private set; }
         public IMemberRepository Member { get; private set; }
