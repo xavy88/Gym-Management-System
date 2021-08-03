@@ -23,7 +23,8 @@ namespace GMS.DataAccess.Data.Repository
             Maintenance = new MaintenanceRepository(_db);
             Trainer = new TrainerRepository(_db);
             User = new UserRepository(_db);
-            
+            Order = new OrderRepository(_db);
+
         }
         public IShiftRepository Shift { get; private set; }
         public IPeriodRepository Period { get; private set; }
@@ -34,7 +35,8 @@ namespace GMS.DataAccess.Data.Repository
         public IMaintenanceRepository Maintenance { get; private set; }
         public ITrainerRepository Trainer { get; private set; }
         public IUserRepository User { get; private set; }
-        
+        public IOrderRepository Order { get; private set; }
+
         public void Dispose()
         {
             _db.Dispose();

@@ -36,7 +36,7 @@ namespace GMS.DataAccess.Data.Repository
 
         }
 
-        public IEnumerable<SelectListItem> GetMembershiptListForDropDown()
+        public IEnumerable<SelectListItem> GetMembershipListForDropDown()
         {
             return _db.Memberships.Select(i => new SelectListItem()
             {

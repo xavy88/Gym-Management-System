@@ -10,7 +10,7 @@ namespace GMS.DataAccess.Data.Repository.IRepository
 {
     public interface IPeriodRepository : IRepository<Period>
     {
-        IEnumerable<SelectListItem> GetPeriodtListForDropDown();
+        IEnumerable<SelectListItem> GetPeriodListForDropDown();
         void Update(Period period);
     }
 }

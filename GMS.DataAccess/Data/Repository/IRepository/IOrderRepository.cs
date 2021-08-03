@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace GMS.DataAccess.Data.Repository.IRepository
 {
-    public interface IMembershipRepository : IRepository<Membership>
+    public interface IOrderRepository : IRepository<Order>
     {
-        IEnumerable<SelectListItem> GetMembershipListForDropDown();
-        void Update(Membership membership);
+        //IEnumerable<SelectListItem> GetOrderListForDropDown();
+        void Update(Order order);
     }
 }

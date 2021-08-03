@@ -17,6 +17,7 @@ namespace GMS.DataAccess.Data.Repository.IRepository
         IMaintenanceRepository Maintenance { get; }
         ITrainerRepository Trainer { get; }
         IUserRepository User { get; }
+        IOrderRepository Order { get; }
         void Save();
     }
 }

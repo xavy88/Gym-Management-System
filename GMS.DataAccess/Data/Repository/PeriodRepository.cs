@@ -17,7 +17,7 @@ namespace GMS.DataAccess.Data.Repository
         {
             _db = db;
         }
-        public IEnumerable<SelectListItem> GetPeriodtListForDropDown()
+        public IEnumerable<SelectListItem> GetPeriodListForDropDown()
         {
             return _db.Periods.Select(i => new SelectListItem()
             {
