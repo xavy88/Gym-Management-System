@@ -1,0 +1,150 @@
+﻿@model GMS.Models.Trainer
+@{
+    var title = "Trainer Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row px-2 mx-2 backgroundWhite">
+    <div class="row">
+        <div class="col-9">
+            <h1>Trainer Details</h1>
+
+        </div>
+        <div class="col-3">
+            <a asp-action="Index" asp-controller="Companies" class="btn btn-warning">Back to Trainers</a>
+        </div>
+    </div>
+    <hr />
+    <div class="col-9">
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Name</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Name" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Phone</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Phone" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Email</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Email" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Gender</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Gender" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Salary</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="Salary" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Date Of Birth</label>
+            </div>
+            <div class="col-6">
+                <input asp-for="DateOfBirth" class="form-control" disabled />
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Address</label>
+            </div>
+            <div class="col-6">
+                <textarea asp-for="Address" class="form-control" disabled></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-3">
+        <img src="@Model.ImageUrl" width="100%" style="border-radius:5px; border:1px solid #bbb9b9" />
+    </div>
+    <hr />
+    <div class="container pt-2">
+        <div class="row py-2">
+            <h3>Clients Details</h3>
+        </div>
+        <div class="row">
+            @if (Model.Clients.Count() > 0)
+            {
+                <table id="dt" class="table table-striped border">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Clients.FirstOrDefault().Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Clients.FirstOrDefault().Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Clients.FirstOrDefault().Phone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Clients.FirstOrDefault().Status)
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Clients)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Phone)
+                                </td>
+                                <td>
+                                    @if (item.Status)
+                                    {
+                                        <i style="color:green;" class="fas fa-check"></i>
+                                    }
+                                    else
+                                    {
+                                        <i style="color:red;" class="fas fa-times"></i>
+                                    }
+                                </td>
+                                <td>
+                                    <a asp-action="Edit" asp-controller="Client" asp-route-id="@item.Id" class="btn btn-info" title="edit"><i class='far fa-edit'></i></a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p>No Client exists...</p>
+            }
+        </div>
+    </div>
+</div>
+
+    @section Scripts{
+        <script>
+            $(document).ready(function () {
+                $('#dt').DataTable();
+            });
+        </script>
+    }

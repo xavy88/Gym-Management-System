@@ -26,6 +26,7 @@ namespace GMS.Models
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
         public bool Status { get; set; } = true;
+        public List<Client> Clients { get; set; }
         
     }
 }

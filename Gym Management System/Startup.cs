@@ -41,6 +41,7 @@ namespace Gym_Management_System
             .AddDefaultTokenProviders();
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<IDetailRepository, DetailRepository>();
             services.AddControllersWithViews().AddNewtonsoftJson().AddRazorRuntimeCompilation();
             services.AddRazorPages();
 

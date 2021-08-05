@@ -15,6 +15,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
     public class TrainerController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
+        
         private readonly IWebHostEnvironment _hostEnvironment;
 
         [BindProperty]
@@ -23,6 +24,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         {
             _hostEnvironment = hostEnvironment;
             _unitOfWork = unitOfWork;
+            
         }
         public IActionResult Index()
         {
@@ -104,6 +106,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
             }
         }
 
+       
         #region API Calls
         public IActionResult GetAll()
         {

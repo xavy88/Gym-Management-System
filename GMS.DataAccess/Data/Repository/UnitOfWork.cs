@@ -24,6 +24,7 @@ namespace GMS.DataAccess.Data.Repository
             Trainer = new TrainerRepository(_db);
             User = new UserRepository(_db);
             Order = new OrderRepository(_db);
+            
 
         }
         public IShiftRepository Shift { get; private set; }
@@ -36,6 +37,7 @@ namespace GMS.DataAccess.Data.Repository
         public ITrainerRepository Trainer { get; private set; }
         public IUserRepository User { get; private set; }
         public IOrderRepository Order { get; private set; }
+        public IDetailRepository Detail { get; private set; }
 
         public void Dispose()
         {
