@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -24,5 +25,6 @@ namespace GMS.DataAccess.Data.Repository.IRepository
         void Remove(int id);
 
         void Remove(T entity);
+
     }
 }
