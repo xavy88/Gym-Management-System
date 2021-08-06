@@ -25,6 +25,7 @@ namespace GMS.Models
         [DataType(DataType.ImageUrl)]
         [Display(Name = "Image")]
         public string ImageUrl { get; set; }
-    
+        public List<Maintenance> Maintenances { get; set; }
+
     }
 }

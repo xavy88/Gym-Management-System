@@ -33,5 +33,22 @@ namespace Gym_Management_System.Areas.Admin.Controllers
 
             return View(trainer);
         }
+
+        // GET: Equipment/Details/5
+        public IActionResult EquipmentDetails(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var equipment = _detailRepo.GetEquipmentWithMaintenances(id.GetValueOrDefault());
+            if (equipment == null)
+            {
+                return NotFound();
+            }
+
+            return View(equipment);
+        }
     }
 }

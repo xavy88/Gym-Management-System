@@ -1,5 +1,6 @@
 ﻿using GMS.DataAccess.Data.Repository.IRepository;
 using GMS.Models;
+using GMS.Utility;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -107,7 +108,8 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         #region API Calls
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitOfWork.Equipment.GetAll()});
+            //return Json(new { data = _unitOfWork.Equipment.GetAll()});
+            return Json(new { data = _unitOfWork.SP_Call.ReturnList<Equipment>(SD.usp_GetAllEquipments, null) });
         }
 
         [HttpDelete]

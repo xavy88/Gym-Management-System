@@ -1,17 +1,17 @@
-﻿@model GMS.Models.Trainer
+﻿@model GMS.Models.Equipment
 @{
-    var title = "Trainer Detail";
+   
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <div class="row px-2 mx-2 backgroundWhite">
     <div class="row">
         <div class="col-9">
-            <h1>Trainer Details</h1>
+            <h1>Equipment Details</h1>
 
         </div>
         <div class="col-3">
-            <a asp-action="Index" asp-controller="Trainer" class="btn btn-warning">Back to Trainers</a>
+            <a asp-action="Index" asp-controller="Equipment" class="btn btn-warning">Back to Equipments</a>
         </div>
     </div>
     <hr />
@@ -26,50 +26,51 @@
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label>Phone</label>
+                <label>Model</label>
             </div>
             <div class="col-6">
-                <input asp-for="Phone" class="form-control" disabled />
+                <input asp-for="Model" class="form-control" disabled />
             </div>
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label>Email</label>
+                <label>Serial</label>
             </div>
             <div class="col-6">
-                <input asp-for="Email" class="form-control" disabled />
+                <input asp-for="Serial" class="form-control" disabled />
             </div>
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label>Gender</label>
+                <label>Buy Price</label>
             </div>
             <div class="col-6">
-                <input asp-for="Gender" class="form-control" disabled />
+                <input asp-for="BuyPrice" class="form-control" disabled />
             </div>
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label>Salary</label>
+                <label>Buy Date</label>
             </div>
             <div class="col-6">
-                <input asp-for="Salary" class="form-control" disabled />
+                <input asp-for="BuyDate" class="form-control" disabled />
+            </div>
+        </div>
+       
+        <div class="form-group row">
+            <div class="col-2">
+                <label>Description</label>
+            </div>
+            <div class="col-6">
+                <textarea asp-for="Description" class="form-control" disabled></textarea>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-2">
-                <label>Date Of Birth</label>
+                <label>Comments</label>
             </div>
             <div class="col-6">
-                <input asp-for="DateOfBirth" class="form-control" disabled />
-            </div>
-        </div>
-        <div class="form-group row">
-            <div class="col-2">
-                <label>Address</label>
-            </div>
-            <div class="col-6">
-                <textarea asp-for="Address" class="form-control" disabled></textarea>
+                <textarea asp-for="Comments" class="form-control" disabled></textarea>
             </div>
         </div>
     </div>
@@ -79,54 +80,41 @@
     <hr />
     <div class="container pt-2">
         <div class="row py-2">
-            <h3>Clients Details</h3>
+            <h3>Maintenance Details</h3>
         </div>
         <div class="row">
-            @if (Model.Clients.Count() > 0)
+            @if (Model.Maintenances.Count() > 0)
             {
                 <table id="dt" class="table table-striped border">
                     <thead>
                         <tr>
                             <th>
-                                @Html.DisplayNameFor(model => model.Clients.FirstOrDefault().Name)
+                                @Html.DisplayNameFor(model => model.Maintenances.FirstOrDefault().Type)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Clients.FirstOrDefault().Email)
+                                @Html.DisplayNameFor(model => model.Maintenances.FirstOrDefault().DateOfMaintenance)
                             </th>
                             <th>
-                                @Html.DisplayNameFor(model => model.Clients.FirstOrDefault().Phone)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Clients.FirstOrDefault().Status)
+                                @Html.DisplayNameFor(model => model.Maintenances.FirstOrDefault().Price)
                             </th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Clients)
+                        @foreach (var item in Model.Maintenances)
                         {
                             <tr>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
+                                    @Html.DisplayFor(modelItem => item.Type)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Email)
+                                    @Html.DisplayFor(modelItem => item.DateOfMaintenance)
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Phone)
+                                    @Html.DisplayFor(modelItem => item.Price)
                                 </td>
                                 <td>
-                                    @if (item.Status)
-                                    {
-                                        <i style="color:green;" class="fas fa-check"></i>
-                                    }
-                                    else
-                                    {
-                                        <i style="color:red;" class="fas fa-times"></i>
-                                    }
-                                </td>
-                                <td>
-                                    <a asp-action="Edit" asp-controller="Client" asp-route-id="@item.Id" class="btn btn-info" title="edit"><i class='far fa-edit'></i></a>
+                                    <a asp-action="Edit" asp-controller="Maintenance" asp-route-id="@item.Id" class="btn btn-info" title="edit"><i class='far fa-edit'></i></a>
                                 </td>
                             </tr>
                         }
@@ -135,7 +123,7 @@
             }
             else
             {
-                <p>No Client exists...</p>
+                <p>No Maintenances exists...</p>
             }
         </div>
     </div>

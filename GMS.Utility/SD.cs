@@ -12,7 +12,10 @@ namespace GMS.Utility
         public const string Trainer = "Trainer";
         public const string Member = "Member";
 
+        //Store procedures
+
         public const string usp_GetAllTrainers = "usp_GetAllTrainers";
+        public const string usp_GetAllEquipments = "usp_GetAllEquipments";
 
     }
 }

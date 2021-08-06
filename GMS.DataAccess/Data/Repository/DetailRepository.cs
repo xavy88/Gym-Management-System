@@ -40,5 +40,29 @@ namespace GMS.DataAccess.Data.Repository
 
             return trainer;
         }
+
+
+        public Equipment GetEquipmentWithMaintenances(int id)
+        {
+            var p = new
+            {
+                Id = id
+            };
+
+            var sql = "SELECT * FROM Equipment WHERE Id = @Id;"
+                + "SELECT * FROM Maintenances WHERE EquipmentId = @Id; ";
+
+            Equipment equipment;
+
+            using (var lists = db.QueryMultiple(sql, p))
+            {
+                equipment = lists.Read<Equipment>().ToList().FirstOrDefault();
+                equipment.Maintenances = lists.Read<Maintenance>().ToList();
+            }
+
+            return equipment;
+        }
+
+      
     }
 }
