@@ -116,7 +116,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         #region API Calls
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitOfWork.Client.GetAll(includeProperties: "Trainer")});
+            return Json(new { data = _unitOfWork.Client.GetAll(includeProperties: "Trainer") });
         }
 
         [HttpDelete]
