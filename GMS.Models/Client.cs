@@ -33,5 +33,7 @@ namespace GMS.Models
         [ForeignKey("TrainerId")]
         public Trainer Trainer { get; set; }
 
+        public List<Order> Orders { get; set; }
+
     }
 }

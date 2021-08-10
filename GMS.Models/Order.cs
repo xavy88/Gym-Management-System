@@ -34,7 +34,6 @@ namespace GMS.Models
         [ForeignKey("PeriodId")]
         public Period Period { get; set; }
         public string Comments { get; set; }
-       
-        
+            
     }
 }

@@ -13,7 +13,6 @@ namespace GMS.DataAccess.Data.Repository.IRepository
 
         Trainer GetTrainerWithClients(int id);
         Equipment GetEquipmentWithMaintenances(int id);
-
         //List<Trainer> GetAllTrainerWithClients();
 
     }
