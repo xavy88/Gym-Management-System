@@ -21,6 +21,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         
         [BindProperty]
         public OrderVM orderVM { get; set; }
+ 
 
         public OrderController(IUnitOfWork unitOfWork)
         {
@@ -31,6 +32,8 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         {
             return View();
         }
+
+       
 
         public IActionResult Upsert(int? id)
         {
@@ -81,6 +84,8 @@ namespace Gym_Management_System.Areas.Admin.Controllers
                 return View(orderVM);
             }
         }
+
+        
 
         #region API Calls
         public IActionResult GetAll()

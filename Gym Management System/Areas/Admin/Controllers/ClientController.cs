@@ -32,7 +32,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         {
             return View();
         }
-
+               
         public IActionResult Upsert(int? id)
         {
             CliVM = new ClientVM()
