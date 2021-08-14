@@ -38,7 +38,7 @@ namespace GMS.DataAccess.Data.Repository
 
         public IEnumerable<SelectListItem> GetMembershipListForDropDown()
         {
-            return _db.Memberships.Select(i => new SelectListItem()
+            return _db.Memberships.Where(i=>i.Status==true).Select(i => new SelectListItem()
             {
                 Text = i.Name,
                 Value = i.Id.ToString()

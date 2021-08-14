@@ -19,7 +19,7 @@ namespace GMS.DataAccess.Data.Repository
         }
         public IEnumerable<SelectListItem> GetTrainerListForDropDown()
         {
-            return _db.Trainer.Select(i => new SelectListItem()
+            return _db.Trainer.Where(t=>t.Status==true).Select(i => new SelectListItem()
             {
                 Text = i.Name,
                 Value = i.Id.ToString()

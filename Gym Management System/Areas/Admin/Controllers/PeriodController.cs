@@ -65,7 +65,8 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitOfWork.Period.GetAll() });
+            var date = DateTime.Today;
+            return Json(new { data = _unitOfWork.Period.GetAll(p => p.EndTime >= date) });
         }
       
 

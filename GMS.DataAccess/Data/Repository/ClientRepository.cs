@@ -19,7 +19,7 @@ namespace GMS.DataAccess.Data.Repository
         }
         public IEnumerable<SelectListItem> GetClientListForDropDown()
         {
-            return _db.Clients.Select(i => new SelectListItem()
+            return _db.Clients.Where(c=>c.Status == true).Select(i => new SelectListItem()
             {
                 Text = i.Name,
                 Value = i.Id.ToString()

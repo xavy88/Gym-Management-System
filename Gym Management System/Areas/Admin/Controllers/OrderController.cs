@@ -90,7 +90,8 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         #region API Calls
         public IActionResult GetAll()
         {
-            return Json(new { data = _unitOfWork.Order.GetAll(includeProperties: "Client,Membership,Period,Shift") });
+            var date = DateTime.Today;
+            return Json(new { data = _unitOfWork.Order.GetAll(o=>o.EndDate>=date,includeProperties: "Client,Membership,Period,Shift") });
         }
 
         [HttpDelete]

@@ -19,7 +19,7 @@ namespace GMS.DataAccess.Data.Repository
         }
         public IEnumerable<SelectListItem> GetPeriodListForDropDown()
         {
-            return _db.Periods.Select(i => new SelectListItem()
+            return _db.Periods.Where(i=>i.Status==true).Select(i => new SelectListItem()
             {
                 Text = i.Name,
                 Value = i.Id.ToString()
