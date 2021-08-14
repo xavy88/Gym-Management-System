@@ -25,6 +25,7 @@ namespace GMS.DataAccess.Data.Repository
             User = new UserRepository(_db);
             Order = new OrderRepository(_db);
             Plan = new PlanRepository(_db);
+            TrainerSchedule = new TrainerScheduleRepository(_db);
             SP_Call = new SP_Call(db);
 
 
@@ -41,6 +42,7 @@ namespace GMS.DataAccess.Data.Repository
         public IOrderRepository Order { get; private set; }
         public IDetailRepository Detail { get; private set; }
         public IPlanRepository Plan { get; private set; }
+        public ITrainerScheduleRepository TrainerSchedule { get; private set; }
         public ISP_Call SP_Call { get; private set; }
 
         public void Dispose()

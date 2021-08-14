@@ -1,7 +1,7 @@
-﻿@model GMS.Models.ViewModel.OrderVM
+﻿@model GMS.Models.ViewModel.TrainerScheduleVM
 
 @{
-    var title = "Create Order";
+    var title = "Create Schedule";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -9,33 +9,24 @@
 
     <div class="row px-2 mx-2 backgroundWhite border">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        @if (Model.Order.Id != 0)
+        @if (Model.TrainerSchedule.Id != 0)
         {
-            <input type="hidden" asp-for="Order.Id" />
-            title = "Edit Order";
+            <input type="hidden" asp-for="TrainerSchedule.Id" />
+            title = "Edit Schedule";
         }
 
         <div class="col-12">
-            <h2 class="" style="color: #191970;"><i class="fas fa-motorcycle"></i> @title</h2>
+            <h2 class="text-primary"><img src="~/images/Gral/Schedule.png" height="100px" width="100px" /> @title</h2>
             <br />
         </div>
         <div class="col-9">
             <div class="form-group row">
                 <div class="col-4">
-                    <label>Member</label>
+                    <label>Trainer</label>
                 </div>
                 <div class="col-8">
-                    @Html.DropDownListFor(m => m.Order.ClientId, Model.ClientList,
-                                            "--- Please select a Client ---", new { @class = "form-control" })
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-4">
-                    <label>MemberShip</label>
-                </div>
-                <div class="col-8">
-                    @Html.DropDownListFor(m => m.Order.MembershipId, Model.MembershipList,
-                                            "--- Please select a Membership ---", new { @class = "form-control" })
+                    @Html.DropDownListFor(m => m.TrainerSchedule.TrainerId, Model.TrainerList,
+                                            "--- Please select a Trainer ---", new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group row">
@@ -43,26 +34,26 @@
                     <label>Shift</label>
                 </div>
                 <div class="col-8">
-                    @Html.DropDownListFor(m => m.Order.ShiftId, Model.ShiftList,
+                    @Html.DropDownListFor(m => m.TrainerSchedule.ShiftId, Model.ShiftList,
                                             "--- Please select a Shift ---", new { @class = "form-control" })
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Order.StartDate"></label>
+                    <label asp-for="TrainerSchedule.StartDate"></label>
                 </div>
                 <div class="col-8">
-                    <input type="date" asp-for="Order.StartDate" class="form-control" />
-                    <span asp-validation-for="Order.StartDate" class="text-danger"></span>
+                    <input type="date" asp-for="TrainerSchedule.StartDate" class="form-control" />
+                    <span asp-validation-for="TrainerSchedule.StartDate" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Order.EndDate"></label>
+                    <label asp-for="TrainerSchedule.EndDate"></label>
                 </div>
                 <div class="col-8">
-                    <input type="date" asp-for="Order.EndDate" class="form-control" />
-                    <span asp-validation-for="Order.EndDate" class="text-danger"></span>
+                    <input type="date" asp-for="TrainerSchedule.EndDate" class="form-control" />
+                    <span asp-validation-for="TrainerSchedule.EndDate" class="text-danger"></span>
                 </div>
             </div>
             <div class="form-group row">
@@ -70,27 +61,27 @@
                     <label>Period</label>
                 </div>
                 <div class="col-8">
-                    @Html.DropDownListFor(m => m.Order.PeriodId, Model.PeriodList,
+                    @Html.DropDownListFor(m => m.TrainerSchedule.PeriodId, Model.PeriodList,
                                             "--- Please select a Period ---", new { @class = "form-control" })
                 </div>
             </div>
             
             <div class="form-group row">
                 <div class="col-4">
-                    <label asp-for="Order.Comments"></label>
+                    <label asp-for="TrainerSchedule.Comments"></label>
                 </div>
                 <div class="col-8">
-                    <textarea asp-for="Order.Comments" class="form-control" style="height:300px;"></textarea>
-                    <span asp-validation-for="Order.Comments" class="text-danger"></span>
+                    <textarea asp-for="TrainerSchedule.Comments" class="form-control" style="height:300px;"></textarea>
+                    <span asp-validation-for="TrainerSchedule.Comments" class="text-danger"></span>
                 </div>
             </div>
            
             <div class="form-group row">
                 <div class="col-8 offset-4">
-                    @if (Model.Order.Id != 0)
+                    @if (Model.TrainerSchedule.Id != 0)
                     {
                         //Edit button and back to list
-                        <partial name="_EditAndBackToListButton" model="Model.Order.Id" />
+                        <partial name="_EditAndBackToListButton" model="Model.TrainerSchedule.Id" />
                     }
                     else
                     {

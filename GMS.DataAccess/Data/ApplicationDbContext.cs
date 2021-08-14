@@ -24,6 +24,7 @@ namespace Gym_Management_System.Data
         public DbSet<ApplicationUser> ApplicationUsers { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Plan> Plans { get; set; }
+        public DbSet<TrainerSchedule> TrainerSchedule { get; set; }
 
 
     }

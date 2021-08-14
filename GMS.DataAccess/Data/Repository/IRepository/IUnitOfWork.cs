@@ -20,6 +20,7 @@ namespace GMS.DataAccess.Data.Repository.IRepository
         IOrderRepository Order { get; }
         IDetailRepository Detail { get; }
         IPlanRepository Plan { get; }
+        ITrainerScheduleRepository TrainerSchedule { get; }
         ISP_Call SP_Call { get; }
         void Save();
     }
