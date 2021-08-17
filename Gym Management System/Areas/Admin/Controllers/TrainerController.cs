@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Gym_Management_System.Areas.Admin.Controllers
@@ -111,8 +112,12 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         #region API Calls
         public IActionResult GetAll()
         {
-            //return Json(new { data = _unitOfWork.Trainer.GetAll()});
-            return Json(new { data = _unitOfWork.SP_Call.ReturnList<Trainer>(SD.usp_GetAllTrainers, null) });
+
+            //var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            //var claims = claimsIdentity.FindFirst(ClaimTypes.Name);
+
+            //return Json(new { data = _unitOfWork.Trainer.GetAll(t => t.Email == claims.Value) });
+           return Json(new { data = _unitOfWork.SP_Call.ReturnList<Trainer>(SD.usp_GetAllTrainers, null) });
 
         }
 
