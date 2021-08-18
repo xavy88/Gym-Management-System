@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
-    [Authorize(Roles = SD.Admin)]
+    [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
     [Area("Admin")]
     public class TrainerScheduleController : Controller
     {
@@ -33,8 +33,8 @@ namespace Gym_Management_System.Areas.Admin.Controllers
             return View();
         }
 
-       
 
+        [Authorize(Roles = SD.Admin)]
         public IActionResult Upsert(int? id)
         {
             trainerScheduleVM = new TrainerScheduleVM()
@@ -55,7 +55,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = SD.Admin)]
         public IActionResult Upsert()
         {
             if (ModelState.IsValid)
@@ -92,6 +92,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = SD.Admin)]
         public IActionResult Delete(int id)
         {
             var trainerScheduleFromDb = _unitOfWork.TrainerSchedule.Get(id);

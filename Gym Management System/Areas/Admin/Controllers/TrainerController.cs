@@ -32,6 +32,10 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         {
             return View();
         }
+        public IActionResult IndexTrainerOfClient()
+        {
+            return View();
+        }
 
         public IActionResult Upsert(int? id)
         {
@@ -118,6 +122,15 @@ namespace Gym_Management_System.Areas.Admin.Controllers
 
             //return Json(new { data = _unitOfWork.Trainer.GetAll(t => t.Email == claims.Value) });
            return Json(new { data = _unitOfWork.SP_Call.ReturnList<Trainer>(SD.usp_GetAllTrainers, null) });
+
+        }
+
+        public IActionResult GetAllClientOfClient()
+        {
+            var claimsIdentity = (ClaimsIdentity)this.User.Identity;
+            var claims = claimsIdentity.FindFirst(ClaimTypes.Name);
+
+            return Json(new { data = _unitOfWork.Client.GetAll(t => t.Trainer.Email == claims.Value, includeProperties: "Trainer") });
 
         }
 

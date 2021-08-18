@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
-    [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
+   // [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
     [Area("Admin")]
     public class ClientController : Controller
     {
@@ -28,11 +28,12 @@ namespace Gym_Management_System.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
             _hostEnvironment = hostEnvironment;
         }
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
-               
+        [Authorize(Roles = SD.Admin)]
         public IActionResult Upsert(int? id)
         {
             CliVM = new ClientVM()
@@ -51,7 +52,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = SD.Admin)]
         public IActionResult Upsert()
         {
             if (ModelState.IsValid)
@@ -114,12 +115,14 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         }
 
         #region API Calls
+        [Authorize]
         public IActionResult GetAll()
         {
             return Json(new { data = _unitOfWork.Client.GetAll(includeProperties: "Trainer") });
         }
 
         [HttpDelete]
+        [Authorize(Roles = SD.Admin)]
         public IActionResult Delete(int id)
         {
             var clientFromDb = _unitOfWork.Client.Get(id);
