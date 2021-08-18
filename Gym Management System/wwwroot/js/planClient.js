@@ -22,7 +22,7 @@ function loadDataTable() {
                 "data": "id",
                 "render": function (data) {
                     return `<div class="text-center">
-                                <a href="/Admin/plan/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
+                                <a href="/Admin/plan/Detail/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
                                     <i class='far fa-edit'></i>
                                 </a>
                                 &nbsp;

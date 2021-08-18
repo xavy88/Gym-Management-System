@@ -24,10 +24,7 @@ function loadDataTable() {
                                 <a href="/Admin/client/Upsert/${data}" class='btn btn-success text-white' style='cursor:pointer; width:50px;'>
                                     <i class='far fa-edit'></i>
                                 </a>
-                                &nbsp;
-                                <a href="/Admin/detail/ClientDetails/${data}" class='btn btn-info text-white' style='cursor:pointer; width:50px;'>
-                                    <i class="fas fa-calendar-week"></i>
-                                </a>
+                                
                                 &nbsp;
                                 <a onclick=Delete("/Admin/client/Delete/${data}") class='btn btn-danger text-white' style='cursor:pointer; width:50px;'>
                                     <i class='far fa-trash-alt'></i>

@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
-    [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
+    
     [Area("Admin")]
     public class PlanController : Controller
     {
@@ -27,12 +27,29 @@ namespace Gym_Management_System.Areas.Admin.Controllers
             _unitOfWork = unitOfWork;
             
         }
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
-               
+        [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
         public IActionResult Upsert(int? id)
+        {
+            planVM = new PlanVM()
+            {
+                Plan = new Plan(),
+                ClientList = _unitOfWork.Client.GetClientListForDropDown(),
+            };
+
+            if (id != null)
+            {
+                planVM.Plan = _unitOfWork.Plan.Get(id.GetValueOrDefault());
+            }
+
+            return View(planVM);
+        }
+        [Authorize]
+        public IActionResult Detail (int? id)
         {
             planVM = new PlanVM()
             {
@@ -50,7 +67,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-
+        [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
         public IActionResult Upsert()
         {
             if (ModelState.IsValid)
@@ -78,6 +95,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         }
 
         #region API Calls
+        [Authorize]
         public IActionResult GetAll()
         {
             var date = DateTime.Today;
@@ -85,6 +103,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         }
 
         [HttpDelete]
+        [Authorize(Roles = SD.Admin)]
         public IActionResult Delete(int id)
         {
             var planFromDb = _unitOfWork.Plan.Get(id);
