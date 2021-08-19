@@ -1,6 +1,7 @@
 ﻿using GMS.DataAccess.Data.Repository.IRepository;
 using GMS.Models;
 using GMS.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = SD.Admin + "," + SD.Manager)]
+    [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
     [Area("Admin")]
     public class TrainerController : Controller
     {
@@ -117,10 +118,7 @@ namespace Gym_Management_System.Areas.Admin.Controllers
         public IActionResult GetAll()
         {
 
-            //var claimsIdentity = (ClaimsIdentity)this.User.Identity;
-            //var claims = claimsIdentity.FindFirst(ClaimTypes.Name);
-
-            //return Json(new { data = _unitOfWork.Trainer.GetAll(t => t.Email == claims.Value) });
+           
            return Json(new { data = _unitOfWork.SP_Call.ReturnList<Trainer>(SD.usp_GetAllTrainers, null) });
 
         }

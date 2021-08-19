@@ -16,12 +16,10 @@ namespace GMS.Models
         public string Name { get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}")]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         [Display(Name ="Start Time")]
         public DateTime StartTime{ get; set; }
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:d}")]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:d}")]
         [Display(Name = "End Time")]
         public DateTime EndTime { get; set; }
         [MaxLength(200)]

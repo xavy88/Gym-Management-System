@@ -1,7 +1,9 @@
 ﻿using GMS.DataAccess.Data.Repository.IRepository;
 using GMS.Models;
 using GMS.Models.ViewModel;
+using GMS.Utility;
 using Gym_Management_System.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -14,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = SD.Admin + "," + SD.Manager)]
+    [Authorize(Roles = SD.Admin)]
     [Area("Admin")]
     public class MemberController : Controller
     {

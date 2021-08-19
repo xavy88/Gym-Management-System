@@ -1,6 +1,7 @@
 ﻿using GMS.DataAccess.Data.Repository.IRepository;
 using GMS.Models;
 using GMS.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
-    //[Authorize(Roles = SD.Admin + "," + SD.Manager)]
+    [Authorize(Roles = SD.Admin)]
     [Area("Admin")]
     public class EquipmentController : Controller
     {

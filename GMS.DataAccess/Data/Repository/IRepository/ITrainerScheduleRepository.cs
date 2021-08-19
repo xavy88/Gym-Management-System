@@ -10,7 +10,7 @@ namespace GMS.DataAccess.Data.Repository.IRepository
 {
     public interface ITrainerScheduleRepository : IRepository<TrainerSchedule>
     {
-        //IEnumerable<SelectListItem> GetOrderListForDropDown();
+        
         void Update(TrainerSchedule trainerSchedule);
     }
 }

@@ -21,41 +21,7 @@
 <body id="body-pd" class="search-background">
     <header class="header mb-5" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
-        @*<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-                <div class="container">
-                    <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"><img src="~/images/Logo-GSM.png" alt="Gym Management System" height="118px" /></a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Shift" asp-action="Index">Shift</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Membership" asp-action="Index">Memberships</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Equipment" asp-action="Index">Equipments</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Member" asp-action="Index">Members</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="Trainer" asp-action="Index">Trainer</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
-                            </li>
-                        </ul>
-                        <partial name="_LoginPartial" />
-                    </div>
-                </div>
-            </nav>*@
+       
            <partial name="_LoginPartial" />
     </header>
 
@@ -70,24 +36,12 @@
                         <span class="nav_name ">Dashboard</span>
                     </a>
 
-                    @*<a class="nav_link" asp-area="Member" asp-controller="Home" asp-action="Index" title="Home"><img src="~/images/menu-icons/Home.png" width="30px" height="30px" /><span class="nav_name">Home</span> </a>*@
-                    @*<a class="nav_link" asp-area="Customer" asp-controller="Home" asp-action="List"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">List</span> </a>*@
-                    @*@if (User.IsInRole(SD.Trainer) || User.IsInRole(SD.Admin))
-        {
-            <a class="nav_link" asp-area="Admin" asp-controller="Category" asp-action="Index"> <i class='bx bx-category nav_icon'></i> <span class="nav_name">Categories</span> </a>
-            <a class="nav_link" asp-area="Admin" asp-controller="Service" asp-action="Index"> <i class='bx bxs-car-mechanic nav_icon'></i> <span class="nav_name">Products</span> </a>
-            <a class="nav_link" asp-area="Admin" asp-controller="Order" asp-action="Index"> <i class='bx bxs-credit-card-alt nav_icon'></i> <span class="nav_name">Orders</span> </a>
-        }*@
+                  
 
                     @if (User.IsInRole(SD.Admin))
                     {
 
-                        /* <a class="nav-link" asp-area="Member" asp-controller="Home" asp-action="Index"><i class='bx bx-home nav_icon'></i> <span class="nav_name">Home</span></a>
-                         <a class="nav-link" asp-area="Admin" asp-controller="Shift" asp-action="Index"><i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Shift</span></a>
-                         <a class="nav-link" asp-area="Admin" asp-controller="Membership" asp-action="Index"><i class='bx bx-category nav_icon'></i> <span class="nav_name">Memberships</span></a>
-                         <a class="nav-link" asp-area="Admin" asp-controller="Equipment" asp-action="Index"><i class='bx bxs-car-mechanic nav_icon'></i> <span class="nav_name">Equipments</span></a>
-                         <a class="nav-link" asp-area="Admin" asp-controller="Member" asp-action="Index"><i class='bx bxs-credit-card-alt nav_icon'></i> <span class="nav_name">Members</span></a>
-                         <a class="nav-link" asp-area="Admin" asp-controller="Trainer" asp-action="Index"><i class='bx bxs-credit-card-alt'></i> <span class="nav_name">Trainer</span></a>*/
+                       
                         <a class="nav_link" asp-area="Admin" asp-controller="Shift" asp-action="Index" title="Shift"> <img src="~/images/menu-icons/Period.png" width="30px" height="30px" /> <span class="nav_name">Shifts</span> </a>
                         <a class="nav_link" asp-area="Admin" asp-controller="Period" asp-action="Index" title="Period"> <img src="~/images/menu-icons/Shift.png" width="30px" height="30px" /> <span class="nav_name">Periods</span> </a>
                         <a class="nav_link" asp-area="Admin" asp-controller="Membership" asp-action="Index" title="Membership"> <img src="~/images/menu-icons/Membership.png" width="30px" height="30px" /> <span class="nav_name">Memberships</span> </a>

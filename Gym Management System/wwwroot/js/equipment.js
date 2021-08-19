@@ -17,7 +17,6 @@ function loadDataTable() {
             { "data": "model", "width": "20%" },
             { "data": "serial", "width": "20%" },
             { "data": "buyPrice", "width": "10%" },
-//            { "data": "buyDate", "width": "20%" },
             {
                 "data": "id",
                 "render": function (data) {

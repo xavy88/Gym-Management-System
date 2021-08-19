@@ -10,7 +10,7 @@ namespace GMS.DataAccess.Data.Repository.IRepository
 {
     public interface IOrderRepository : IRepository<Order>
     {
-        //IEnumerable<SelectListItem> GetOrderListForDropDown();
+       
         void Update(Order order);
     }
 }

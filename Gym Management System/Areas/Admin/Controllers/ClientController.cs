@@ -13,7 +13,7 @@ using System.IO;
 
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
-   // [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
+   
     [Area("Admin")]
     public class ClientController : Controller
     {

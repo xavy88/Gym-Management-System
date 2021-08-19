@@ -17,15 +17,7 @@ namespace GMS.DataAccess.Data.Repository
         {
             _db = db;
         }
-        //public IEnumerable<SelectListItem> GetMaintenanceListForDropDown()
-        //{
-        //    return _db.Maintenances.Select(i => new SelectListItem()
-        //    {
-        //        Text = i.,
-        //        Value = i.Id.ToString()
-        //    });
-        //}
-
+        
         public void Update(Maintenance maintenance)
         {
             var objFromDb = _db.Maintenances.FirstOrDefault(c => c.Id == maintenance.Id);

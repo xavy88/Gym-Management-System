@@ -18,7 +18,7 @@ namespace GMS.Models
         public double BuyPrice { get; set; }
         [Display(Name ="Buy Date")]
         [DataType(DataType.Date)]
-        //[DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
+        
         public DateTime BuyDate { get; set; }
         public string Description { get; set; }
         public string Comments { get; set; }

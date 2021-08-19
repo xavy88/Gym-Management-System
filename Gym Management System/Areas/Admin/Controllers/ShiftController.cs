@@ -1,5 +1,6 @@
 ﻿using GMS.DataAccess.Data.Repository.IRepository;
 using GMS.Models;
+using GMS.Utility;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = SD.Admin + "," + SD.Manager)]
+    [Authorize(Roles = SD.Admin)]
     public class ShiftController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

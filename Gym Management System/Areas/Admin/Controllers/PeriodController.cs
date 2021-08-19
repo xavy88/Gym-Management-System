@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Gym_Management_System.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Authorize(Roles = SD.Admin + "," + SD.Trainer)]
+    [Authorize(Roles = SD.Admin)]
     public class PeriodController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

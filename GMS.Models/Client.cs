@@ -14,6 +14,7 @@ namespace GMS.Models
         [Required]
         public string Name { get; set; }
         public string Phone { get; set; }
+        
         public string Email { get; set; }
         [Display(Name = "Gender M/F")]
         [StringLength(1, ErrorMessage = "You have to write M or F")]

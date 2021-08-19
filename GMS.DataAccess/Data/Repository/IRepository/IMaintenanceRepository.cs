@@ -10,7 +10,6 @@ namespace GMS.DataAccess.Data.Repository.IRepository
 {
     public interface IMaintenanceRepository : IRepository<Maintenance>
     {
-     //IEnumerable<SelectListItem> GetMaintenanceListForDropDown();
-        void Update(Maintenance maintenance);
+           void Update(Maintenance maintenance);
     }
 }
